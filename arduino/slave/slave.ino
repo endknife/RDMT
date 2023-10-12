@@ -16,10 +16,6 @@
 #endif
 
 RH_ASK driver;
-// RH_ASK driver(2000, 4, 5, 0); // ESP8266 or ESP32: do not use pin 11 or 2
-// RH_ASK driver(2000, 3, 4, 0); // ATTiny, RX on D3 (pin 2 on attiny85) TX on D4 (pin 3 on attiny85), 
-// RH_ASK driver(2000, PD14, PD13, 0); STM32F4 Discovery: see tx and rx on Orange and Red LEDS
-
 const int pinUp[] = {pin_up_one, pin_up_two, pin_up_three};
 const int pinDown[] = {pin_down_one, pin_down_two, pin_down_three};
 const int pinStop[] = {pin_stop_one, pin_stop_two, pin_stop_three};
@@ -84,16 +80,12 @@ void loop()
          * firstValue = valore stanza
          * lastChar = ultimo carattere
          * numbers[] = tutti i numeri
-         * 
          */
-
-
         
         //TROVA L'ULTIMO CARATTERE PER LA MODALITA' DI MOVIMENTO DEI BANCHI
         lastChar = receivedString.charAt(receivedString.length() - 1);
         Serial.print("Ultimo carattere: ");
         Serial.println(lastChar);
-
 
         //TROVA I NUMERI DEI BANCHI SELEZIONATI
         //estrapola i numeri
@@ -136,8 +128,7 @@ void loop()
             delay(200);
             digitalWrite(pinStop[i], LOW);
           }
-        }
-        
+        } 
 
         for(int i = 0; i<sizeof(banchi)/sizeof(int); i++){
           int y = 0;

@@ -1,0 +1,17 @@
+-----ISTRUZIONI------
+
+//ALZARE I BANCHI
+-Selezionare i banchi desiderati e succesivamente la freccia su.
+
+//ABBASSARE I BANCHI
+-Selezionare i banchi desiderati e succesivamente la freccia giù.
+
+//FERMARE I BANCHI
+-Schiacciare la X, NB: questa funzione ferma automaticamente TUTTI i banchi in movimento dell'aula.
+
+//SELEZIONARE TUTTI I BANCHI
+-Cliccare icona "seleziona tutti" e successivamente l'istruzione desiderata.
+
+//NOTA
+-Se non vengono selezionati banchi non verrà effettuata nessuna operazione
+

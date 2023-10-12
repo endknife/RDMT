@@ -52,21 +52,18 @@ Per utilizzare questo progetto, seguire questi passi:
 
 - Java Development Kit (JDK)
 - Libreria RadioHead (per la comunicazione radiofrequenza)
+- Libreria JSerialComm
 - Arduino IDE (per caricare il codice sugli Arduino)
 
 ## Autori
 
-Questo progetto è stato sviluppato da [Nome dell'autore 1] e [Nome dell'autore 2].
+Questo progetto è stato sviluppato da [Alessandro Recla](https://github.com/lsndrcl) e [Alessandro Zago](https://github.com/endknife).
 
 ## Licenza
 
-Questo progetto è rilasciato con la seguente licenza: [Inserire il tipo di licenza].
-
-## Contatti
-
-Per domande o ulteriori informazioni sul progetto, è possibile contattare gli autori all'indirizzo email [email@example.com].
+Questo progetto è rilasciato con la seguente licenza: [MIT].
 
 ## Ringraziamenti
 
-Gli autori desiderano ringraziare [Nome delle persone o organizzazioni] per il supporto e il contributo a questo progetto.
+Gli autori desiderano ringraziare [Matteo Gottardi](https://github.com/MatteoGottardi) per il supporto e il contributo a questo progetto.
 

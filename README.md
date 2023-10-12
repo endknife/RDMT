@@ -61,7 +61,7 @@ Questo progetto è stato sviluppato da [Alessandro Recla](https://github.com/lsn
 
 ## Licenza
 
-Questo progetto è rilasciato con la seguente licenza: [MIT].
+Questo progetto è rilasciato con la seguente licenza: MIT license.
 
 ## Ringraziamenti
 

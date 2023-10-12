@@ -25,14 +25,25 @@ Il progetto è diviso in tre file principali:
 Per utilizzare questo progetto, seguire questi passi:
 
 1. Caricare il codice sorgente sugli Arduino master e slave.
+- Dovrai modificare queste due linee di codice nel arudino slave
+  ```c++
+  const String idAula = "B112";
+  const int banchi[] = {2,3,4};
+  ```
+- Prima di caricare i codici sugli Arduini dovrai installare e includere la libreria RadioHead
+  
+3. Eseguire l'applicazione Java (App.java) sul computer.
+- Se vuoi modificare una aula o crearne una nuvoa dovrai creare un nuovo progetto e inserire tutti i file dentro alla cartella /java/project_files/*. Una volta fatto ciò dovrai modificare queste due variabili nel file ***Communication.java***
+  ```Java
+  final static String HEADER = "#B112#";
+  String serialNumber = "7573530363135131A122";
+  ```
 
-2. Eseguire l'applicazione Java (App.java) sul computer.
+4. Selezionare l'aula specifica e i banchi che si desidera controllare.
 
-3. Selezionare l'aula specifica e i banchi che si desidera controllare.
+5. Utilizzare i pulsanti per alzare, abbassare o fermare i banchi selezionati.
 
-4. Utilizzare i pulsanti per alzare, abbassare o fermare i banchi selezionati.
-
-5. Assicurarsi che la comunicazione con gli Arduino sia stabilita prima di iniziare a utilizzare l'applicazione.
+6. Assicurarsi che la comunicazione con gli Arduino sia stabilita prima di iniziare a utilizzare l'applicazione.
 
 ## Requisiti
 

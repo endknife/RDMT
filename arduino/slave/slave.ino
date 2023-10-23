@@ -1,11 +1,16 @@
+//Definitions of the pins used to move the benches
+
+//First bench
 #define pin_up_one 6
 #define pin_stop_one 7
 #define pin_down_one 8
 
+//Second bench
 #define pin_up_two 3
 #define pin_stop_two 4
 #define pin_down_two 5
 
+//Third bench
 #define pin_up_three A5
 #define pin_stop_three A4
 #define pin_down_three 2
@@ -20,17 +25,19 @@ const int pinUp[] = {pin_up_one, pin_up_two, pin_up_three};
 const int pinDown[] = {pin_down_one, pin_down_two, pin_down_three};
 const int pinStop[] = {pin_stop_one, pin_stop_two, pin_stop_three};
 
-// VARIABILI GLOBALI CON DATI TRASMESSI
+// Global variables with transmitted values
 const String idAula = "B112";
 const int banchi[] = {2,3,4};
 const int nrBanchi = sizeof(banchi)/sizeof(int);
 
 String firstValue;
-int numbers[16]; // Supponiamo che ci siano al massimo 15 banchi + 1 perchè deve trovare uno zero il while
+int numbers[16]; // We suppose that there are going to be MAX 15 benches (+1 for the while loop)
 char lastChar;
 
 void setup()
 {
+
+    //Pins iniitialization
     for(int i = 0; i<nrBanchi; i++){
       pinMode(pinUp[i], OUTPUT);
       pinMode(pinDown[i], OUTPUT);
@@ -67,7 +74,7 @@ void loop()
       buf[buflen] = '\0';
         String receivedString = String((char*)buf);
 
-        //TROVA IL NUMERO DELL'AULA TRA I CANCELLETTI
+        //Finds the room ID between the two "#"
         int firstHashIndex = receivedString.indexOf('#');
         int secondHashIndex = receivedString.indexOf('#', firstHashIndex + 1);
         if (firstHashIndex != -1 && secondHashIndex != -1) {
@@ -77,28 +84,28 @@ void loop()
         }
 
         /*
-         * firstValue = valore stanza
-         * lastChar = ultimo carattere
-         * numbers[] = tutti i numeri
+         * firstValue = room ID
+         * lastChar = Movement type
+         * numbers[] = Selected benches
          */
         
-        //TROVA L'ULTIMO CARATTERE PER LA MODALITA' DI MOVIMENTO DEI BANCHI
+        //Finds the last char for the benches moving mode
         lastChar = receivedString.charAt(receivedString.length() - 1);
         Serial.print("Ultimo carattere: ");
         Serial.println(lastChar);
 
-        //TROVA I NUMERI DEI BANCHI SELEZIONATI
-        //estrapola i numeri
+      
+        //Finds and extracts the selected benches numbers
         int SecondHashIndex = receivedString.indexOf('#', receivedString.indexOf('#') + 1);
         
-        // Trova la posizione del ;
+        // Finds the position of ";"
         int lastSemicolonIndex = receivedString.lastIndexOf(';');
 
         if (SecondHashIndex != -1 && lastSemicolonIndex != -1) {
             String numbersString = receivedString.substring(SecondHashIndex + 1, lastSemicolonIndex);
             
-            // Split della stringa in numeri separati da ;
-            
+      
+            //Splits the string every ";"
             int index = 0;
             char* token = strtok((char*)numbersString.c_str(), ";");
             while (token != NULL && index < sizeof(numbers)) {
@@ -106,7 +113,7 @@ void loop()
                 token = strtok(NULL, ";");
             }
 
-            // Stampa i numeri estratti
+            // Print the correct numbers
             Serial.println("Numeri estratti:");
             for (int i = 0; i < index; i++) {
                 Serial.println(numbers[i]);
@@ -122,6 +129,7 @@ void loop()
           goto fine;
         }
 
+        //If the last char is "T" the selected pins are being stopped
         if(lastChar == 'T'){
           for(int i = 0; i<nrBanchi; i++){
             digitalWrite(pinStop[i], HIGH);
@@ -133,7 +141,8 @@ void loop()
         for(int i = 0; i<sizeof(banchi)/sizeof(int); i++){
           int y = 0;
           while(numbers[y] != 0){
-            
+
+            //Debugging info printed on Arduino serial monitor
             Serial.print("Banchi: ");
             Serial.print(banchi[i]);
             Serial.print("  ==  Numbers: ");
@@ -144,7 +153,8 @@ void loop()
             }else{
               Serial.println("FALSE");
             }
-            
+
+            //Sets the selected pins in the desired mode [ S=UP, G=DOWN ]
             if(banchi[i] == numbers[y]){
               switch(lastChar){
                 case 'S': 
